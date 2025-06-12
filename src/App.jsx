@@ -8,8 +8,8 @@ function App() {
 
   return (
     <>
-       <div className='min-h-screen bg-gray-500 p-6'>
-       <h1 className='text-3xl font-bold mb-4 text-center'>Event Management System</h1> 
+       <div className='min-h-screen bg-gray-600 p-6'>
+       <h1 className='text-4xl font-bold mb-4 text-center'>Event Management System</h1> 
        </div>
     </>
   )
