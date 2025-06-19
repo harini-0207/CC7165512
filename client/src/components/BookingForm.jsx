@@ -16,28 +16,30 @@ function BookingForm ({onSubmit,initialData}) {
       if(initialData){
         setForm(initialData);
       }
-    },[]);
+    },[initialData]);
 
  const handleChange = (e) => {
   const { name, value } = e.target;
      setForm(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async(e) =>{
     e.preventDefault(); 
-    const bookingwithId = form.id ? form :{...form,id:Date.now()};
+
+    //const bookingwithId = form.id ? form :{...form,id:Date.now()};
     if (onSubmit) {
-      onSubmit(bookingwithId);
+      onSubmit(form); 
     }
     else{
-      const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-      bookings.push(bookingwithId); 
-      localStorage.setItem('bookings',JSON.stringify(bookings));  
+      await fetch('http://localhost:5000/api/bookings',{
+       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form)
+      });
     }
     
     setForm({name: '', contact: '', date: '', location: '', preferences: ''})
-
-     navigate('/booking-details');
+    navigate('/booking-details');
   }
   
   return (

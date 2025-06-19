@@ -8,16 +8,19 @@ function EditBookingPage() {
   const [booking, setBooking] = useState(null);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('bookings')) || [];
-    const found = stored.find(b => b.id === parseInt(id));
-    if (!found) return navigate('/booking-details');
-    setBooking(found);
+    fetch(`http://localhost:5000/api/bookings/${id}`)
+    .then(res => res.json())
+    .then(data => setBooking(data))
+    .catch(() => navigate('/booking-details'));
+
   }, [id, navigate]);
 
-  const handleUpdate = (updatedBooking) => {
-    const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-    const updatedList = bookings.map(b => b.id === parseInt(id) ? updatedBooking : b);
-    localStorage.setItem('bookings', JSON.stringify(updatedList));
+  const handleUpdate = async(updatedBooking) => {
+   await fetch(`http://localhost:5000/api/bookings/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedBooking)
+    });
     navigate('/booking-details');
   };
 
