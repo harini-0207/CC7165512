@@ -54,10 +54,10 @@ function UserBookingDetailsPage() {
                   {booking.name}
                 </h3>
               </div>
-              <p className="text-gray-800 text-xl"><strong>Contact:</strong> {booking.contact}</p>
-              <p className="text-gray-800 text-xl"><strong>Date:</strong> {booking.date}</p>
-              <p className="text-gray-800 text-xl"><strong>Location:</strong> {booking.location}</p>
-              <p className="text-gray-800 text-xl"><strong>Preferences:</strong> {booking.preferences}</p>
+              <p className="text-gray-800"><strong>Contact:</strong> {booking.contact}</p>
+              <p className="text-gray-800"><strong>Date:</strong> {booking.date}</p>
+              <p className="text-gray-800"><strong>Location:</strong> {booking.location}</p>
+              <p className="text-gray-800"><strong>Preferences:</strong> {booking.preferences}</p>
               <div className="mt-4 flex gap-3 justify-end text-3xl">
                 <button
                   onClick={() => handleEdit(booking._id)}
