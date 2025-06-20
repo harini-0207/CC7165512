@@ -61,13 +61,13 @@ function UserBookingDetailsPage() {
               <div className="mt-4 flex gap-3 justify-end text-3xl">
                 <button
                   onClick={() => handleEdit(booking._id)}
-                  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center gap-1"
+                  className="bg-green-500 hover:bg-green-600 text-white px-2 py-2 rounded-lg flex items-center gap-1"
                 >
                   <FaEdit /> Edit
                 </button>
                 <button
                   onClick={() => handleDelete(booking._id)}
-                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg flex items-center gap-1"
+                  className="bg-red-500 hover:bg-red-600 text-white px-2 py-2 rounded-lg flex items-center gap-1"
                 >
                   <FaTrashAlt /> Delete
                 </button>
