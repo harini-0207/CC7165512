@@ -59,18 +59,20 @@ function UserBookingDetailsPage() {
               <p className="text-gray-800"><strong>Location:</strong> {booking.location}</p>
               <p className="text-gray-800"><strong>Preferences:</strong> {booking.preferences}</p>
               <div className="mt-4 flex gap-3 justify-end text-3xl">
-                <button
+              <button
                   onClick={() => handleEdit(booking._id)}
-                  className="bg-green-500 hover:bg-green-600 text-white rounded-lg flex items-center gap-1"
+                  className="px-3 py-1 text-sm bg-green-500 hover:bg-green-600 text-white rounded-md flex items-center gap-1"
                 >
-                  <FaEdit /> Edit
+                  <FaEdit className="text-xs" /> Edit
                 </button>
+
                 <button
                   onClick={() => handleDelete(booking._id)}
-                  className="bg-red-500 hover:bg-red-600 text-white rounded-lg flex items-center gap-1"
+                  className="px-3 py-1 text-sm bg-red-500 hover:bg-red-600 text-white rounded-md flex items-center gap-1"
                 >
-                  <FaTrashAlt /> Delete
-                </button>
+                  <FaTrashAlt className="text-xs" /> Delete
+               </button>
+
               </div>
             </li>
           ))}
