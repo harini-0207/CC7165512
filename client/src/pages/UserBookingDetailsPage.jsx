@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FaEdit, FaTrashAlt, FaCalendarAlt } from 'react-icons/fa';
 import { GiPartyPopper } from 'react-icons/gi';
 import logo from '../assets/logo.jpeg';
@@ -7,6 +7,7 @@ import logo from '../assets/logo.jpeg';
 function UserBookingDetailsPage() {
   const [bookings, setBookings] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation(); // ✅ to read passed state
 
   const fetchBookings = async () => {
     const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/bookings`);
@@ -16,7 +17,7 @@ function UserBookingDetailsPage() {
 
   useEffect(() => {
     fetchBookings();
-  }, []);
+  }, [location.state?.updated]); 
 
   const handleEdit = (id) => {
     navigate(`/edit-booking/${id}`);
@@ -34,7 +35,7 @@ function UserBookingDetailsPage() {
         <img src={logo} alt="Event Logo" className="w-50 h-50 mb-4" />
         <h2 className="text-5xl font-extrabold text-pink-700 flex items-center gap-2 font-serif italic tracking-wide">
           <GiPartyPopper className="text-pink-500" />
-         AK Booking Details
+          AK Booking Details
         </h2>
       </div>
 
@@ -59,7 +60,7 @@ function UserBookingDetailsPage() {
               <p className="text-gray-800"><strong>Location:</strong> {booking.location}</p>
               <p className="text-gray-800"><strong>Preferences:</strong> {booking.preferences}</p>
               <div className="mt-4 flex gap-3 justify-end text-3xl">
-              <button
+                <button
                   onClick={() => handleEdit(booking._id)}
                   className="px-3 py-1 text-sm bg-green-500 hover:bg-green-600 text-white rounded-md flex items-center gap-1"
                 >
@@ -71,8 +72,7 @@ function UserBookingDetailsPage() {
                   className="px-3 py-1 text-sm bg-red-500 hover:bg-red-600 text-white rounded-md flex items-center gap-1"
                 >
                   <FaTrashAlt className="text-xs" /> Delete
-               </button>
-
+                </button>
               </div>
             </li>
           ))}
