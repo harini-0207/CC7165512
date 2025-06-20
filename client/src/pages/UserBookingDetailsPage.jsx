@@ -9,7 +9,7 @@ function UserBookingDetailsPage() {
   const navigate = useNavigate();
 
   const fetchBookings = async () => {
-    const res = await fetch('http://localhost:5000/api/bookings');
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/bookings`);
     const data = await res.json();
     setBookings(data);
   };
@@ -23,7 +23,7 @@ function UserBookingDetailsPage() {
   };
 
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/api/bookings/${id}`, { method: 'DELETE' });
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/bookings/${id}`, { method: 'DELETE' });
     fetchBookings();
   };
 

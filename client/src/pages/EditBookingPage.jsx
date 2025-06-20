@@ -8,7 +8,7 @@ function EditBookingPage() {
   const [booking, setBooking] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/bookings/${id}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/bookings/${id}`)
     .then(res => res.json())
     .then(data => setBooking(data))
     .catch(() => navigate('/booking-details'));
@@ -16,7 +16,7 @@ function EditBookingPage() {
   }, [id, navigate]);
 
   const handleUpdate = async(updatedBooking) => {
-   await fetch(`http://localhost:5000/api/bookings/${id}`, {
+   await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/bookings/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedBooking)

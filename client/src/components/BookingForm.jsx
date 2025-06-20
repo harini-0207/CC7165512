@@ -31,7 +31,7 @@ function BookingForm ({onSubmit,initialData}) {
       onSubmit(form); 
     }
     else{
-      await fetch('http://localhost:5000/api/bookings',{
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/bookings`,{
        method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form)
